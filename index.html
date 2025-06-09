@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petrodatcly - Digital Products & Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8fafc;
+        }
+
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-section {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #667eea;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card.featured {
+            border: 2px solid #667eea;
+            position: relative;
+        }
+
+        .product-card.featured::after {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -15px;
+            background: #10b981;
+            color: white;
+            padding: 5px 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            transform: rotate(45deg);
+        }
+
+        .product-category {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .product-price span {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: normal;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: #475569;
+        }
+
+        .product-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .btn {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .features-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-item:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 20px;
+            color: white;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+
+        .footer p {
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        /* Contact Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+        }
+
+        .modal.show {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .contact-btn {
+            background: #10b981;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
+        .contact-btn.admin2 {
+            background: #667eea;
+        }
+
+        .contact-btn.admin2:hover {
+            background: #5a67d8;
+        }
+
+        .close-btn {
+            background: #e2e8f0;
+            color: #64748b;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .close-btn:hover {
+            background: #cbd5e1;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .modal-content {
+                margin: 10px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Petrodatcly</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Sandz X Rizal Digital Solutions</h1>
+            <p>Layanan hosting premium, backup profesional, dan virtual number terpercaya untuk kebutuhan digital Anda</p>
+        </div>
+    </section>
+
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pilih Paket Terbaik</h2>
+                <p>Solusi lengkap untuk semua kebutuhan digital dan hosting Anda</p>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-category">Hosting</div>
+                    <h3 class="product-title">Petrodatcly Basic</h3>
+                    <div class="product-price">Rp 9K<span>/bulan</span></div>
+                    <ul class="product-features">
+                        <li>RAM 10GB</li>
+                        <li>Kecepatan Fast</li>
+                        <li>CPU 340%</li>
+                        <li>Disk Space 10GB</li>
+                        <li>SSL Certificate Gratis</li>
+                        <li>24/7 Technical Support</li>
+                    </ul>
+                    <button class="btn" onclick="showModal('Petrodatcly Basic')">Pesan Sekarang</button>
+                </div>
+
+                <div class="product-card featured">
+                    <div class="product-category">Hosting Pro</div>
+                    <h3 class="product-title">Petrodatcly Plus</h3>
+                    <div class="product-price">Rp 11K<span>/bulan</span></div>
+                    <ul class="product-features">
+                        <li>RAM Unlimited</li>
+                        <li>Kecepatan Super Fast</li>
+                        <li>CPU Unlimited</li>
+                        <li>Disk Space Unlimited</li>
+                        <li>Ready Refund 5 Days</li>
+                        <li>Priority Support</li>
+                        <li>Free Migration</li>
+                        <li>Daily Auto Backup</li>
+                    </ul>
+                    <button class="btn" onclick="showModal('Petrodatcly Plus')">Pesan Sekarang</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-category">Backup</div>
+                    <h3 class="product-title">Backup File Website</h3>
+                    <div class="product-price">Rp 35K<span>/sekali</span></div>
+                    <ul class="product-features">
+                        <li>Standard CSS & JS Backup</li>
+                        <li>Waiting Time 3-5 Hours</li>
+                        <li>1 Domain + 4 Subdomain</li>
+                        <li>Compressed Archive Format</li>
+                        <li>Database Backup Included</li>
+                        <li>Download Link Valid 7 Days</li>
+                    </ul>
+                    <button class="btn" onclick="showModal('Backup File Website')">Pesan Sekarang</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-category">Backup Pro</div>
+                    <h3 class="product-title">Backup File Website Plus</h3>
+                    <div class="product-price">Rp 55K<span>/sekali</span></div>
+                    <ul class="product-features">
+                        <li>Medium CSS & JS Optimization</li>
+                        <li>Fast Processing 1-2 Hours</li>
+                        <li>1 Domain + Unlimited Subdomain</li>
+                        <li>Multiple Format Options</li>
+                        <li>Ready Refund 75%</li>
+                        <li>Priority Queue Processing</li>
+                        <li>Extended Support</li>
+                    </ul>
+                    <button class="btn" onclick="showModal('Backup File Website Plus')">Pesan Sekarang</button>
+                </div>
+
+                <div class="product-card featured">
+                    <div class="product-category">Virtual Number</div>
+                    <h3 name="product-title">Number Virtual</h3>
+                    <div class="product-price">Rp 7K-300K<span>/number</span></div>
+                    <ul class="product-features">
+                        <li>Chat With Virtual Number</li>
+                        <li>Ready Number Indonesia & Malaysia</li>
+                        <li>Ready Asian Countries</li>
+                        <li>Multiple Number Options</li>
+                        <li>Process Fast (5-15 minutes)</li>
+                        <li>Ready Refund 75%</li>
+                        <li>24/7 Number Availability</li>
+                    </ul>
+                    <button class="btn" onclick="showModal('Number Virtual')">Pesan Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mengapa Pilih Petrodatcly?</h2>
+                <p>Keunggulan dan jaminan kualitas terbaik untuk semua layanan</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Performa Tinggi</h3>
+                    <p>Server dengan teknologi terdepan dan infrastruktur cloud terbaik untuk performa optimal website Anda</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Keamanan Terjamin</h3>
+                    <p>SSL gratis, firewall berlapis, dan monitoring 24/7 untuk melindungi data dan website Anda</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Setup Instant</h3>
+                    <p>Website langsung aktif dalam hitungan menit setelah pemesanan dengan konfigurasi otomatis</p>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>Support 24/7</h3>
+                    <p>Tim teknis siap membantu Anda kapan saja melalui WhatsApp dengan 2 admin yang selalu standby</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <p>&copy; 2025 Sandz X Rizal Digital Produk. All rights reserved.</p>
+            <p>Hubungi kami: <a href="#" onclick="showModal('General Inquiry')">WhatsApp</a></p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <h3 class="modal-title">Pilih Admin untuk Dihubungi:</h3>
+            <div class="contact-options">
+                <button class="contact-btn" onclick="redirectToWhatsApp('6281224595908')">
+                    📱 Admin 1 - +6281224595908
+                </button>
+                <button class="contact-btn admin2" onclick="redirectToWhatsApp('6282125139550')">
+                    📱 Admin 2 - +6282125139550
+                </button>
+            </div>
+            <button class="close-btn" onclick="closeModal()">Batal</button>
+        </div>
+    </div>
+
+    <script>
+        let selectedProduct = '';
+
+        function showModal(productName) {
+            selectedProduct = productName;
+            document.getElementById('contactModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('show');
+        }
+
+        function redirectToWhatsApp(adminNumber) {
+            const message = encodeURIComponent('Halo, saya tertarik dengan produk: ' + selectedProduct);
+            window.open('https://wa.me/' + adminNumber + '?text=' + message, '_blank');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#contact') {
+                    showModal('General Inquiry');
+                } else {
+                    const target = document.querySelector(targetId);
+                    if(target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
